@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #444;
+    min-width: 1000px;
+}
+h1 {
+    margin-top: 50px;
+    font-weight: 300;
+    font-size: 50px;
+}
+h1, h3 {
+    text-align: center;
+}
+h3 {
+    background: #eee;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin: 40px auto;
+    padding: 20px 0 20px;
+}
+img {
+    opacity: 0.84;
+}
+small {
+    display: block;
+    font-size: 60%;
+    margin-top: -0.1em;
+}
+.example {
+    position: relative;
+    margin: 0 auto;
+}
+.serra-example {
+    height: 400px;
+    width: 1000px;
+}
+.serra-example img {
+    position: absolute;
+    height: 100%;
+}
+.tufte-serra {
+    left: 8px;
+}
+.serra-verbs {
+    left: 258px;
+    -webkit-filter: contrast(1.5);
+}
+.serra-quilt-with-tufte-triangle {
+    left: 796px;
+}
+.nyt-example {
+    display: block;
+    margin: 0 auto 20px;
+}
+.musanim-example {
+    width: 1200px;
+    height: 310px;
+}
+.musanim-video {
+    left: 300px;
+    position: absolute;
+    height: 188px;
+    overflow: hidden;
+    width: 619px;
+}
+.musanim-video video {
+    margin-top: -1px;
+}
+.musanim-attribution {
+    position: absolute;
+    left: 300px;
+    width: 619px;
+    text-align: center;
+    top: 216px;
+    font-size: 28px;
+}
+.chopin-node {
+    position: absolute;
+    font-size: 40px;
+    left: 141px;
+    top: 80px;
+}
+.children-node {
+    position: absolute;
+    left: 952px;
+    top: 80px;
+    font-size: 40px;
+}
+.nyt-rewrite-example {
+    position: relative;
+}
+.nyt-rewrite-example .replacement-text {
+    position: absolute;
+    top: 227px;
+    left: 50%;
+    margin-left: 50px;
+    width: 229px;
+    height: 37px;
+    font-size: 14px;
+    font-family: arial,helvetica,sans-serif;
+    line-height: 18px;
+    -webkit-transform: rotateZ(35deg);
+    -moz-transform: rotateZ(35deg);
+    -ms-transform: rotateZ(35deg);
+    -o-transform: rotateZ(35deg);
+    transform: rotateZ(35deg);
+}
+.nyt-rewrite-example .replacement-text > span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -ms-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
+}
+.nyt-rewrite-example .replacement-text > span.current {
+    opacity: 1;
+}
+.nyt-rewrite-example .mathew-highlight {
+    position: absolute;
+    top: 99px;
+    left: 50%;
+    margin-left: -28px;
+    height: 91px;
+    width: 91px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    -webkit-transition: border-color 1s;
+    -moz-transition: border-color 1s;
+    -ms-transition: border-color 1s;
+    -o-transition: border-color 1s;
+    transition: border-color 1s;
+}
+.nyt-rewrite-example .mathew-highlight.on {
+    border-color: green;
+}
+.baseball-example {
+    width: 1000px;
+    height: 900px;
+}
+.baseball-example iframe {
+    width: 1000px;
+    height: 1000px;
+    margin: 0;
+    border: 0;
+    margin-top: -50px auto;
+}
+.text {
+    margin: 40px auto;
+    text-align: center;
+}
+.tombstone {
+    border: 3px solid #444;
+    width: 8px;
+    height: 8px;
+    margin: 0 auto;
+}
+</style>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<h1>Rich Links</h1>
+<center><p>Edward Tufte, Adam Schwartz</p></center>
+<br/>
+<div class="text">
+    <img src="text/serra-text.png" />
+</div>
+<div class="serra-example example">
+    <img class="tufte-serra" src="images/tufte-serra-cropped.jpg" />
+    <img class="serra-verbs" src="images/serra-verbs.png" />
+    <img class="serra-quilt-with-tufte-triangle" src="images/serra-quilt-with-tufte-triangle.png" />
+</div>
+<div class="text">
+    <img src="text/chopin-text.png" />
+</div>
+<div class="musanim-example example">
+    <div class="chopin-node">Chopin</div>
+    <div class="musanim-video"><video src="videos/musanim.m4v" autoplay="true"></video></div>
+    <div class="musanim-attribution">Berceuse, Opus 57, lullaby</div>
+    <div class="children-node">Children</div>
+</div>
+<div class="text">
+    <img src="text/cohen-text.png" />
+</div>
+<img class="nyt-example" src="images/nyt-example-older-original.png" />
+<div class="text">
+    <img src="text/cohen-rewrite-text.png" />
+</div>
+<div class="nyt-rewrite-example">
+    <img class="nyt-example" src="images/nyt-example-older-original-rewrite.png" />
+    <div class="replacement-text">
+        <span class="current">Collaborated with Cohen on questionable stock trades</span>
+        <span><span style="color: green">Confirmed</span> collaborated with Cohen on questionable stock trades</span>
+        <span>Indicted for alleged insider trading with Cohen</span>
+    </div>
+    <div class="mathew-highlight"></div>
+    <script>
+        function pulse() {
+            $('.mathew-highlight').addClass('on');
+            setTimeout(function(){
+                $('.mathew-highlight').removeClass('on');;
+            }, 1000);
+        }
+
+        function advance() {
+            var current = $('.replacement-text > span.current'),
+                next = current.is(':last-child') ? current.siblings().first() : current.next();
+            next.addClass('current');
+            current.removeClass('current');
+        }
+
+        setInterval(function(){
+            pulse();
+            advance();
+        }, 5000);
+    </script>
+</div>
+<div class="text">
+    <img src="text/baseball-text.png" />
+</div>
+<div class="tombstone"></div>

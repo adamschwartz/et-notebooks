@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<script src="http://d3js.org/d3.v2.js?2.9.6"></script>
+<style>
+body {
+  margin: 0;
+}
+
+text {
+  font: 18px "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  fill: #444;
+  text-anchor: middle;
+}
+
+text.link {
+  text-anchor: middle;
+  fill: #444;
+
+}
+
+.node rect {
+  stroke: #444;
+  stroke-width: 1.5px;
+  fill: transparent;
+}
+
+h1 {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #444;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 50px;
+  height: 500px;
+  width: 400px;
+  z-index: -1;
+  text-align: center;
+}
+
+svg {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+</style>
+<body>
+<h1>Cow Tree</h1>
+<script>
+function calculateAngle(d) {
+  var deltaY = d.target.y - d.source.y,
+      deltaX = d.target.x - d.source.x;
+  return Math.atan(deltaX / deltaY) * 180 / Math.PI;
+}
+
+var margin = {top: 0, right: 80, bottom: 0, left: 80},
+    width = 560 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var tree = d3.layout.tree()
+    .size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+    .projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json("tree.json", function(root) {
+  var nodes = tree.nodes(root),
+    links = tree.links(nodes);
+
+  svg.selectAll(".link")
+    .data(links)
+    .enter().append("text")
+      .attr("class", "link")
+      .attr("x", function(d) { return d.source.y; })
+      .attr("y", function(d) { return d.source.x; })
+      .attr("dy", function(d){
+        var angle = calculateAngle(d);
+        return (parseFloat(angle + 8) / 2) + 'px';
+      })
+      .attr("dx", "5.8em")
+      .attr('width', function(d){
+        return Math.sqrt(Math.pow(d.target.y - d.source.y, 2) + Math.pow(d.target.x - d.source.x, 2));
+      })
+      .attr('height', 40)
+      .attr("transform", function(d) {
+        return 'rotate(' + calculateAngle(d) + ', ' + d.source.y + ', ' + d.source.x + ')';
+      })
+      .text(function(d){ return d.target.link; });
+
+  var node = svg.selectAll(".node")
+    .data(nodes)
+    .enter().append("g")
+      .attr("class", function(d) { return "node"; })
+      .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; })
+
+  node.append("rect")
+    .attr("x", "-50")
+    .attr("y", "-20")
+    .attr("width", "100")
+    .attr("height", "40");
+
+  node.append("text")
+    .attr("dy", ".35em")
+    .attr("text-anchor", "end")
+    .text(function(d) { return d.name; });
+});
+</script>

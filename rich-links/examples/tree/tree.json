@@ -1,0 +1,33 @@
+{
+    "name": "beef",
+    "children": [
+        {
+            "name": "cut",
+            "link": "whole",
+            "children": [
+                {
+                    "name": "steak",
+                    "link": "grilled"
+                },
+                {
+                    "name": "carpaccio",
+                    "link": "sliced"
+                }
+            ]
+        },
+        {
+            "name": "ground beef",
+            "link": "ground",
+            "children": [
+                {
+                    "name": "burger",
+                    "link": "grilled"
+                },
+                {
+                    "name": "tartar",
+                    "link": "seasoned"
+                }
+            ]
+        }
+    ]
+}

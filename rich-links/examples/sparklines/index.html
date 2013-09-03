@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<style>
+body {
+    color: #444;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+a {
+    color: red;
+}
+.sparkline-wrapper {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+.streak {
+    position: absolute;
+    right: 110px;
+    top: 0;
+    color: red;
+    text-align: right;
+    width: 100px;
+}
+.main-wrapper .streak {
+    right: 64px;
+}
+.sparkline {
+    overflow: hidden;
+    width: 645px;
+    height: 18px;
+    margin: 40px auto;
+    position: relative;
+}
+.sparkline > div {
+    position: absolute;
+}
+.sparkline .home-line {
+    height: 1px;
+    width: 5px;
+    background: #444;
+    top: 9px;
+}
+.sparkline .home, .sparkline .away {
+    float: left;
+    height: 8px;
+    width: 1px;
+    background: #444;
+}
+.sparkline .home.win {
+    border-bottom: 1px solid #444;
+}
+.sparkline .home.loss {
+    top: 9px;
+    border-top: 2px solid #444;
+}
+.sparkline .away.win {
+    border-bottom: 2px solid #444;
+}
+.sparkline .away.loss {
+    margin-top: 10px;
+    border-top: 2px solid #444;
+}
+.streak-header {
+    position: absolute;
+    top: -32px;
+    right: -13px;
+    width: 140px;
+    text-align: left;
+    font-size: 12px;
+}
+h3 span {
+    font-size: 8px;
+}
+.subheader span {
+    font-size: 5px;
+}
+.sparkline .color-as-streak {
+    border-color: red !important;
+    background-color: red !important;
+}
+.game-streak-highlight {
+    background-color: rgb(255, 215, 202) !important;
+    height: 10px !important;
+}
+.game-streak-highlight.Loss {
+    margin-top: 10px !important;
+}
+h1 {
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+}
+</style>
+<center><p style="padding-bottom: 18px" class="subheader">2009 Boston Red Sox win<span> </span>–<span> </span>loss record, 95<span> </span>–<span> </span>67, <b style="color: red; font-weight: normal">winning streaks of 4 or more games</b></p></center>
+<div class="sparkline-wrapper main-wrapper"><div class="sparkline sparkline-main"></div><div class="streak-header">Longest winning streak</div></div>
+<br/>
+<center><p class="subheader">10 random seasons with the same win<span> </span>–<span> </span>loss record, both at home and on the road <br/><br/><a href="javascript: window.location.reload(); void(0);">Regenerate random seasons</a></p></center>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<div class="sparkline-wrapper"><div class="sparkline sparkline-random"></div></div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://underscorejs.org/underscore.js"></script>
+<script>
+// http://www.baseball-reference.com/teams/BOS/2009-schedule-scores.shtml?redir
+var boston_record = [
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'win'],
+    ['away', 'win'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['away', 'loss'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'loss'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win'],
+    ['home', 'win']
+];
+
+var $sparkline = $('.sparkline-main');
+
+function sortNumber(a, b) {
+    return a - b;
+}
+
+var calculateLongestStreak = function(data) {
+    var streaks = [];
+    var i, streakLength = 1, streakType = data[0][1];
+    for (i = 1; i < data.length; i++) {
+        if (streakType === data[i][1]) {
+            streakLength++;
+        } else {
+            if (data[i - streakLength][1] === 'win') {
+                streaks.push(streakLength);
+            }
+            streakType = data[i][1];
+            streakLength = 1;
+        }
+    }
+    return streaks.sort(sortNumber).reverse()[0];
+};
+
+var drawStreaks = function($dom, data) {
+    var i, streakLength = 1, streakType = data[0][1], j = 0;
+    for (i = 1; i < data.length; i++) {
+        if (streakType === data[i][1]) {
+            streakLength++;
+        } else {
+            if (streakLength >= 4 && data[i - streakLength][1] === 'win') {
+                $dom.prepend('<div class="game-streak-highlight ' + data[i - streakLength][1] + '" style="left: ' + ((i - streakLength) * 4) + 'px; width: ' + ((i * 4) - ((i - streakLength) * 4) - 3) + 'px"></div>');
+                for (j = i - streakLength; j < i; j++) {
+                    $dom.find('[data-game-index="' + j + '"]').addClass('color-as-streak');
+                }
+            }
+            streakType = data[i][1];
+            streakLength = 1;
+        }
+    }
+}
+
+var drawSparkline = function($dom, data) {
+    _.each(data, function(game, index){
+        $dom.append(
+            $('<div>')
+                .css({
+                    left: index * 4
+                })
+                .addClass(game[0]).addClass(game[1])
+                .attr('data-game-index', index)
+        );
+
+        if (game[0] === 'home' && data[index + 1] && data[index + 1][0] === 'home') {
+            $dom.append(
+                $('<div class="home-line">')
+                    .css({
+                        left: index * 4
+                    })
+                    .attr('home-line-index', index)
+            );
+        }
+    });
+
+    drawStreaks($dom, data);
+
+    $dom.parent().append(
+        $('<div class="streak">').append(calculateLongestStreak(data) + ($dom.hasClass('sparkline-main') ? ' games' : ''))
+    );
+};
+
+drawSparkline($sparkline, boston_record);
+
+var randomize = function(data) {
+    var data_home = [], data_away = [];
+    _.each(data, function(game){
+        if (game[0] === 'home') {
+            data_home.push(game[1]);
+        } else {
+            data_away.push(game[1]);
+        }
+    });
+    data_home = _.shuffle(data_home);
+    data_away = _.shuffle(data_away);
+    var home_index = 0, away_index = 0;
+    var final_data = [];
+    _.each(data, function(game, index){
+        if (game[0] === 'home') {
+            final_data.push(['home', data_home[home_index]]);
+            home_index++;
+        } else {
+            final_data.push(['away', data_away[away_index]]);
+            away_index++;
+        }
+    });
+    return final_data;
+};
+
+$('.sparkline-random').each(function(){
+    drawSparkline($(this), randomize(boston_record));
+});
+</script>
