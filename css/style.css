@@ -116,6 +116,7 @@ body.embedded {
 }
 
 body.embedded > header,
-body.embedded > footer {
+body.embedded > footer,
+body.embedded > hr {
     display: none;
 }
