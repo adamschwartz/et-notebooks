@@ -1,3 +1,3 @@
-[Resources for ET Notebooks](http://adamschwartz.co/et-notebooks/)
+Resources for [ET Notebooks](http://www.edwardtufte.com/bboard)
 
-Used on: [ET Notebooks](http://www.edwardtufte.com/bboard)
+__[View the Resources](http://adamschwartz.co/et-notebooks/)__
