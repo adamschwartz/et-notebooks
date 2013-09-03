@@ -1,4 +1,4 @@
 // Remove side padding when embedding pages in an iFrame
-if (window.parent !== window.top) {
+if (window.self !== window.top) {
     document.body.className = 'embedded';
 }
