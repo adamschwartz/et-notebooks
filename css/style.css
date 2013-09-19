@@ -111,6 +111,10 @@ footer {
     margin-right: 1em;
 }
 
+body.hidden {
+    visibility: hidden;
+}
+
 body.embedded {
     padding: 0;
 }
