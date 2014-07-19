@@ -523,8 +523,44 @@
                 </row>
             </div>
         </div>
-    </div>
+        <br>
+        <div class="block">
+            <input type="checkbox" id="framed">
+            <label for="framed">Remove frame</label>
+            <style>
+                .grid.framed.with-animations, .grid.framed.with-animations * {
+                    -webkit-transition: margin .4s, padding .4s
+                }
 
+                #framed:checked ~ .grid.framed.with-animations, #framed:checked ~ .grid.framed.with-animations * {
+                    margin: 0 !important;
+                    padding: 0 !important;
+                }
+            </style>
+            <br>
+            <br>
+            <div class="grid framed with-animations">
+                <row>
+                    <column><img src="klee/1.png" /></column>
+                    <column><img src="klee/2.png" /></column>
+                    <column><img src="klee/3.png" /></column>
+                    <column><img src="klee/4.png" /></column>
+                </row>
+                <row>
+                    <column><img src="klee/5.png" /></column>
+                    <column><img src="klee/6.png" /></column>
+                    <column><img src="klee/7.png" /></column>
+                    <column><img src="klee/8.png" /></column>
+                </row>
+                <row>
+                    <column><img src="klee/9.png" /></column>
+                    <column><img src="klee/10.png" /></column>
+                    <column><img src="klee/11.png" /></column>
+                    <column><img src="klee/12.png" /></column>
+                </row>
+            </div>
+        </div>
+    </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://underscorejs.org/underscore.js"></script>
     <script>
