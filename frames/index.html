@@ -341,6 +341,64 @@
             margin-left: .33em;
             margin-right: .33em;
         }
+
+        .minus, .plus, .times {
+            position: relative;
+            display: inline-block;
+            height: .5625em;
+            width: .5625em;
+            vertical-align: middle;
+            margin-left: .5em;
+            margin-right: .5em;
+        }
+
+        .times {
+            -webkit-transform: rotateZ(45deg);
+        }
+
+        .minus:before, .plus:before, .times:before {
+            content: "";
+            position: absolute;
+            top: .25em;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #000;
+        }
+
+        .plus:after, .times:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: .25em;
+            height: 100%;
+            width: 1px;
+            background: #000;
+        }
+
+        .equation {
+            width: 40em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .equation .left {
+            width: 19em;
+            display: inline-block;
+            text-align: right;
+        }
+
+        .equation .right {
+            width: 19em;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .equation .full {
+            width: 100%;
+            display: inline-block;
+            text-align: left;
+        }
     </style>
 </head>
 <body class="hidden">
@@ -383,6 +441,46 @@
                     <div class="b-label"><div class="double-arrow"><div class="arrow"></div></div>b<span class="equal"></span>image width</div>
                 </div>
             </div>
+        </div>
+        <div class="block">
+            <div class="equation">
+                <span class="full">We can compute the area of the images and frame:</span>
+            </div>
+            <br>
+            <div class="equation">
+                <span class="left">area of images</span>
+                <span class="equal"></span>
+                <span class="right">r<span class="times"></span>c<span class="times"></span>a<span class="times"></span>b<span class="equal"></span>rcab</span>
+            </div>
+            <br>
+            <div class="equation">
+                <span class="left">entire area</span>
+                <span class="equal"></span>
+                <span class="right">width of entire area<span class="times"></span>height of entire area</span>
+            </div>
+            <div class="equation">
+                <span class="left"></span>
+                <span class="equal"></span>
+                <span class="right">(bc<span class="plus"></span>vc<span class="plus"></span>v)<span class="times"></span>(ar<span class="plus"></span>hr<span class="plus"></span>h)</span>
+            </div>
+            <br>
+            <div class="equation">
+                <span class="left">frame area</span>
+                <span class="equal"></span>
+                <span class="right">(bc<span class="plus"></span>vc<span class="plus"></span>v)<span class="times"></span>(ar<span class="plus"></span>hr<span class="plus"></span>h)<span class="minus"></span>rcab</span>
+            </div>
+            <br>
+            <br>
+            <div class="equation">
+                <span class="full">With r<span class="equal"></span>3, c<span class="equal"></span>4, a<span class="equal"></span>96, b<span class="equal"></span>128, v<span class="equal"></span>16, and h<span class="equal"></span>32 we have:</span>
+            </div>
+            <br>
+            <div class="equation">
+                <span class="left">frame area percentage</span>
+                <span class="equal"></span>
+                <span class="right">37.66%</span>
+            </div>
+            <br>
         </div>
         <div class="block">
             <div class="grid framed smiley">
