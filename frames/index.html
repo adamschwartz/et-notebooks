@@ -16,6 +16,7 @@
         }
 
         body {
+            font-family: "GillSans", "Gill Sans", "Trebuchet MS", sans-serif;
             display: inline-block;
             min-width: 70rem;
             width: auto;
@@ -329,6 +330,17 @@
             right: 2px;
             top: -3px;
         }
+
+        .equal {
+            display: inline-block;
+            height: .25em;
+            vertical-align: middle;
+            border-top: 1px solid #444;
+            border-bottom: 1px solid #444;
+            width: .5em;
+            margin-left: .33em;
+            margin-right: .33em;
+        }
     </style>
 </head>
 <body class="hidden">
@@ -363,12 +375,12 @@
                     </row>
                 </div>
                 <div class="annotations">
-                    <div class="r-label">r = 3 rows</div>
-                    <div class="c-label">c = 4 columns</div>
-                    <div class="h-label"><div class="left-arrow"></div>h = horizontal thickness</div>
-                    <div class="v-label"><div class="up-arrow"></div>v = vertical thickness</div>
-                    <div class="a-label"><div class="double-arrow"><div class="arrow"></div></div>a = image height</div>
-                    <div class="b-label"><div class="double-arrow"><div class="arrow"></div></div>b = image width</div>
+                    <div class="r-label">r<span class="equal"></span>3 rows</div>
+                    <div class="c-label">c<span class="equal"></span>4 columns</div>
+                    <div class="h-label"><div class="left-arrow"></div>h<span class="equal"></span>horizontal thickness</div>
+                    <div class="v-label"><div class="up-arrow"></div>v<span class="equal"></span>vertical thickness</div>
+                    <div class="a-label"><div class="double-arrow"><div class="arrow"></div></div>a<span class="equal"></span>image height</div>
+                    <div class="b-label"><div class="double-arrow"><div class="arrow"></div></div>b<span class="equal"></span>image width</div>
                 </div>
             </div>
         </div>
