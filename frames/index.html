@@ -95,8 +95,18 @@
 
         .grid.framed.smiley {
             background-color: red;
-            background-image: url(smiley-with-doubles.png);
-            background-size: 2em 7em;
+            background-image: url(smiley-winking.png);
+            background-repeat: repeat-x;
+            background-size: 2em 44em;
+            background-position: left -22em;
+        }
+
+        .grid.framed.smiley[wink] { background-position: 0 0 }
+
+        .grid.framed.rainbow {
+            background: red;
+            background-image: -moz-linear-gradient(top, rgba(255, 0, 0, 1) 0%, rgba(255, 255, 0, 1) 15%, rgba(0, 255, 0, 1) 30%, rgba(0, 255, 255, 1) 50%, rgba(0, 0, 255, 1) 65%, rgba(255, 0, 255, 1) 80%, rgba(255, 0, 0, 1) 100%);
+            background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0%, rgba(255, 0, 0, 1)), color-stop(15%, rgba(255, 255, 0, 1)), color-stop(30%, rgba(0, 255, 0, 1)), color-stop(50%, rgba(0, 255, 255, 1)), color-stop(65%, rgba(0, 0, 255, 1)), color-stop(80%, rgba(255, 0, 255, 1)), color-stop(100%, rgba(255, 0, 0, 1)));
         }
 
         .clear {
@@ -475,7 +485,7 @@
             <div class="equation">
                 <span class="left">frame area percentage</span>
                 <span class="equal"></span>
-                <span class="right">37.66%</span>
+                <span class="right">37.7%</span>
             </div>
             <br>
         </div>
@@ -501,6 +511,7 @@
                 </row>
             </div>
         </div>
+        <br>
         <div class="block">
             <div class="grid">
                 <row>
@@ -523,23 +534,41 @@
                 </row>
             </div>
         </div>
-        <br>
+        <br><br><br><br><br><br><br><br><br><br>
         <div class="block">
+            <video src="Rainbow frame animation.m4v" autoplay loop>
+        </div>
+        <br>
+        <br><br><br><br><br><br><br><br><br><br>
+        <div class="block">
+            <img src="side-by-side.png">
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>
+        <!--div class="block">
             <input type="checkbox" id="framed">
             <label for="framed">Remove frame</label>
             <style>
                 .grid.framed.with-animations, .grid.framed.with-animations * {
-                    -webkit-transition: margin .4s, padding .4s
+                    -webkit-transition: margin .4s, padding .4s, height .4s, width .4s, top .4s;
                 }
 
                 #framed:checked ~ .grid.framed.with-animations, #framed:checked ~ .grid.framed.with-animations * {
                     margin: 0 !important;
                     padding: 0 !important;
                 }
+
+                #framed:checked ~ .grid.framed.with-animations column {
+                    height: 7.33333rem;
+                    width: 10.5rem;
+                }
+
+                #framed:checked ~ .grid.framed.with-animations column img {
+                    top: 0;
+                }
             </style>
             <br>
             <br>
-            <div class="grid framed with-animations">
+            <div class="grid framed rainbow with-animations">
                 <row>
                     <column><img src="klee/1.png" /></column>
                     <column><img src="klee/2.png" /></column>
@@ -559,12 +588,21 @@
                     <column><img src="klee/12.png" /></column>
                 </row>
             </div>
-        </div>
+        </div-->
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://underscorejs.org/underscore.js"></script>
     <script>
-
+        var wink = function() {
+            setTimeout(function(){
+                $('.smiley').attr('wink', true);
+                setTimeout(function(){
+                    $('.smiley').removeAttr('wink');
+                }, 400);
+                wink();
+            }, (Math.random() * 1000 * 4));
+        };
+        wink();
     </script>
     <!--
     <hr>
